@@ -1,0 +1,13 @@
+﻿@page "/result"
+<MudContainer MaxWidth="MaxWidth.Medium">
+    <SearchComponent OnSearch="HandleSearch" />
+    <br />
+    <DocumentsCardListComponent SearchTerm="@searchTerm" />
+</MudContainer>
+@code {
+    private string searchTerm = string.Empty;
+    protected void HandleSearch(string searchTerm)
+    {
+        this.searchTerm = searchTerm;
+    }
+}

@@ -1,0 +1,48 @@
+﻿@page "/editdocument/{documentId:int}"
+@inject IViewDocumentById ViewDocumentById
+@inject NavigationManager NavigationManager
+@inject IEditDocumentService EditDocumentService
+<h3>EditDocument</h3>
+<EditForm Model="Document" OnValidSubmit="SaveDocument">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <MudCard>
+        <MudCardContent>
+            <MudTextField Label="Title" HelperText="Max. 8 characters"
+                          @bind-Value="Document.Title" For="@(() => Document.Title)" />
+            <MudTextField Label="Short Discription" Class="mt-3"
+                          @bind-Value="Document.ShortDiscription" For="@(() => Document.ShortDiscription)" />
+            <MudDatePicker @bind-Date="Document.DatePublished" For="@(() => Document.DatePublished)" />
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton DisableElevation="true"
+                       ButtonType="ButtonType.Submit"
+                       Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       Class="mx-2">Publish</MudButton>
+            <MudButton DisableElevation="true"
+                       Variant="Variant.Outlined"
+                       Color="Color.Primary"
+                       Class="mx-2"
+                       OnClick="Cancel">Cancel</MudButton>
+        </MudCardActions>
+    </MudCard>
+</EditForm>
+@code {
+    [Parameter]
+    public int documentId { get; set; }
+    private Document Document = new Document();
+    protected async override Task OnParametersSetAsync()
+    {
+        this.Document = await ViewDocumentById.ExecuteAsync(this.documentId);
+    }
+    protected async Task SaveDocument()
+    {
+        await EditDocumentService.ExecuteAsync(this.Document);
+        NavigationManager.NavigateTo("/documents");
+    }
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/documents");
+    }
+}

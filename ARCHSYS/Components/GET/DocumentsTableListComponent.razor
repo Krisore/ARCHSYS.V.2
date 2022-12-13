@@ -1,0 +1,34 @@
+﻿
+@inject IViewDocumentsBySearchTerm ViewDocumentsBySearchTerm
+<MudSimpleTable Hover="true" FixedHeader="true" Style="overflow-x: auto;" Bordered="true">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+   
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+       <DocumentsTableListItemComponent Documents="listofDocuments"/>
+    </tbody>
+</MudSimpleTable>
+
+@code {
+    private List<Document> listofDocuments = new List<Document>();
+    [Parameter]
+    public string SearchTerm { get; set; } = string.Empty;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        listofDocuments = (await ViewDocumentsBySearchTerm.ExecuteAsync(this.SearchTerm)).ToList();
+    }
+}

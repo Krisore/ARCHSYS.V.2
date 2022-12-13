@@ -1,0 +1,19 @@
+﻿@page "/"
+@using ARCHSYS.CORE
+@inject IViewDocumentsBySearchTerm ViewDocumentBySearchTerm
+@inject IEditDocumentService EditDocumentService
+
+
+<PageTitle> Home 🏠 </PageTitle>
+<MudContainer MaxWidth="MaxWidth.Medium">
+    <SearchComponent OnSearch="HandleSearch" />
+    <DocumentsCardListComponent SearchTerm="@searchTerm" />
+</MudContainer>
+@code{
+    private List<Document> documents = new List<Document>();
+    private string searchTerm = string.Empty;
+    protected void HandleSearch(string searchTerm)
+    {
+        this.searchTerm = searchTerm;
+    }
+}

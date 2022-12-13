@@ -1,0 +1,73 @@
+﻿@inherits LayoutComponentBase
+<MudThemeProvider Theme="MyCustomTheme" @bind-IsDarkMode="IsDarkMode" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudLayout>
+    <MudAppBar Fixed="true" Dense="true" Color="Color.Default" Elevation="2">
+        <MudToggleIconButton Size="Size.Small" @bind-Toggled="@IsDrawerOpen" Color="Color.Default" Icon="@Icons.Material.Filled.Menu" Edge="Edge.Start"
+        ToggledIcon="@Icons.Material.Outlined.Close" ToggledSize="Size.Small"/>
+            <MudSpacer/>
+        <MudButton StartIcon="@Icons.Material.Filled.Add" Class="rounded-0 mx-2" Href="/upload" Variant="Variant.Outlined" Disabled="false" DisableElevation="true">
+            UPLOAD
+        </MudButton>
+        <MudButton Class="rounded-0" Variant="Variant.Filled" Disabled="true" DisableElevation="true">
+            SIGN IN
+        </MudButton>
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert"/>
+        <MudToggleIconButton @bind-Toggled="@IsDarkMode"
+                             Icon="@Icons.Sharp.DarkMode"
+                             Color="Color.Dark"
+                             Title="Go to Dark Mode"
+                             ToggledIcon="@Icons.Sharp.LightMode"
+                             ToggledColor="@Color.Success"
+                             Edge="Edge.End"
+                             Size="Size.Small"
+                             ToggledSize="Size.Small"
+                             ToggledTitle="Go to Light Mode" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="IsDrawerOpen" ClipMode="DrawerClipMode.Always" Elevation="1">
+        <NavigationLayout/>
+    </MudDrawer>
+    <MudMainContent Class="my-14">
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+    <MudScrollToTop>
+        <MudFab Color="Color.Secondary" Icon="@Icons.Filled.KeyboardArrowUp" Size="Size.Small"/>
+    </MudScrollToTop>
+    <footer>
+
+    </footer>
+</MudLayout>
+
+@code {
+    public bool IsDrawerOpen { get; set; }
+    public bool IsDarkMode { get; set; }
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            Palette = new Palette()
+            {
+                Primary = Colors.Amber.Default,
+                Secondary = Colors.Green.Accent4,
+                AppbarBackground = Colors.Shades.White,
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = Colors.Blue.Lighten1
+            },
+
+            LayoutProperties = new LayoutProperties()
+            {
+                DrawerWidthLeft = "260px",
+                DrawerWidthRight = "350px"
+            },
+            Typography = new Typography()
+            {
+                Default = new Default()
+                {
+                    FontFamily = new[] { "Poppins", "Helvetica", "Arial", "sans-serif" }
+                }
+            }
+    };
+}

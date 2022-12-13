@@ -1,0 +1,75 @@
+﻿@inject IViewDocumentsBySearchTerm ViewDocumentsBySearchTerm
+<MudList Class="my-2">
+    <MudDivider DividerType="DividerType.Middle" />
+     <div class="mx-3 my-3" id="unique_id_scroll_section" style="height:800px;overflow: auto;">
+    @foreach (var research in listofDocuments)
+    {
+       
+        <MudListItem OnClick="((e) => OnClickInfo(research))">
+            <MudCard Class="cursor-pointer" Elevation="1">
+                <MudCardContent>
+                    <MudText Class="d-block" Typo="Typo.body2">
+                        <strong>@research.Title</strong>
+                    </MudText>
+                    <MudText Class="d-inline" Typo="Typo.subtitle2"> by </MudText>
+                    @*<cite>
+                @foreach (var author in AuthorService.Authors ?? throw new Exception(message: "authors are null here"))
+                {
+                if (research.Id.Equals(author.ResearchId))
+                {
+                <MudText Class="d-inline" Typo="Typo.caption" Align="Align.Left">
+                @author.LastName @author.MiddleInitial. ,
+                </MudText>
+                }
+                }
+                (@research.PublishDate.Value.Year)
+                </cite>*@
+                    <MudText Class="d-block mb-2" Typo="Typo.caption" Align="Align.Right">
+                        Capstone Advisor : Prof. Michael Angelo Miguel
+                    </MudText>
+                    <MudDivider DividerType="DividerType.FullWidth" />
+                    <MudText Class="mt-2" Typo="Typo.caption" Align="Align.Justify">
+                        @research.ShortDiscription
+                    </MudText>
+                </MudCardContent>
+                <MudDivider DividerType="DividerType.FullWidth" />
+                <MudCardActions>
+                    <MudButtonGroup Class="rounded-0" Color="Color.Inherit" Variant="Variant.Filled" Size="Size.Small" DisableElevation="true">
+                        <MudButton StartIcon="@Icons.Material.Filled.Download" IconColor="Color.Primary">Download</MudButton>
+                        <MudToggleIconButton Icon="@Icons.Material.Filled.AddCircle" Color="@Color.Primary" Title="Add to library"
+                                         ToggledIcon="@Icons.Material.Filled.DownloadDone" ToggledTitle="Added to library" ToggledColor="@Color.Secondary" />
+                        <MudToggleIconButton Icon="@Icons.Material.Filled.BookmarkAdd" Color="@Color.Primary"
+                                         ToggledIcon="@Icons.Material.Filled.BookmarkAdded" ToggledColor="@Color.Secondary" />
+                    </MudButtonGroup>
+                </MudCardActions>
+            </MudCard>
+        </MudListItem>
+    }
+    </div>
+    <MudDivider DividerType="DividerType.Middle" Class="my-3" />
+</MudList>
+<InfoDrawer document="_document" IsOpen="IsOpen"/>
+<div class="d-flex flex-column align-center">
+    <MudPagination BoundaryCount="1" MiddleCount="1" Count="22" @bind-Selected="@_selected" />
+</div>
+
+
+
+
+@code {
+    private List<Document> listofDocuments = new List<Document>();
+    private Document _document = new();
+    private int _selected = 11;
+    [Parameter]
+    public string SearchTerm { get; set; } = string.Empty;
+    public bool IsOpen { get; set; } = false;
+    protected override async Task OnParametersSetAsync()
+    {
+        listofDocuments = (await ViewDocumentsBySearchTerm.ExecuteAsync(this.SearchTerm)).ToList();
+    }
+    private void OnClickInfo(Document document)
+    {
+        _document = document;
+        IsOpen = !IsOpen;
+    }
+}

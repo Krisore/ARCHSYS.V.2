@@ -1,0 +1,21 @@
+﻿@page "/documents"
+@inject NavigationManager NavigationManager
+<PageTitle> Documents 📃 </PageTitle>
+<SearchComponent OnSearch="HandleSearch"/>
+<br/>
+<DocumentsTableListComponent SearchTerm="@searchTerm"/>
+<br/>
+<MudButton Variant="Variant.Filled" Size="Size.Medium" OnClick="AddDocument">
+    UPLOAD
+</MudButton>
+@code {
+    private string searchTerm = string.Empty;
+    protected void HandleSearch (string searchTerm)
+    {
+        this.searchTerm = searchTerm;
+    }
+    private void AddDocument()
+    {
+        NavigationManager.NavigateTo("/upload");
+    }
+}

@@ -1,0 +1,40 @@
+﻿@page "/upload"
+@inject IAddDocumentService AddDocumentService
+@inject NavigationManager NavigationManger
+<EditForm Model="document" OnValidSubmit="SaveDocument">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <MudCard>
+        <MudCardContent>
+            <MudTextField Label="Title" HelperText="Max. 8 characters"
+                          @bind-Value="document.Title" For="@(() => document.Title)" />
+            <MudTextField Label="Short Discription" Class="mt-3"
+                          @bind-Value="document.ShortDiscription" For="@(() => document.ShortDiscription)" />
+            <MudDatePicker @bind-Date="document.DatePublished" For="@(() => document.DatePublished)" />
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton DisableElevation="true" 
+                       ButtonType="ButtonType.Submit" 
+                       Variant="Variant.Filled" 
+                       Color="Color.Primary" 
+                       Class="mx-2">Publish</MudButton>
+            <MudButton DisableElevation="true"
+                       Variant="Variant.Outlined"
+                       Color="Color.Primary"
+                       Class="mx-2"
+                       OnClick="Cancel">Cancel</MudButton>
+        </MudCardActions>
+    </MudCard>
+</EditForm>
+@code {
+    private Document document = new Document();
+    private async Task SaveDocument()
+    {
+        await AddDocumentService.ExecuteAsync(document);
+        NavigationManger.NavigateTo("/documents");
+    }
+    private void Cancel()
+    {
+        NavigationManger.NavigateTo("/documents");
+    }
+}

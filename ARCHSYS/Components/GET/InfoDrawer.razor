@@ -1,0 +1,49 @@
+﻿<MudDrawer Class="mt-12 mb-12" @bind-Open="IsOpen" Anchor="Anchor.Right" Elevation="2" ClipMode="DrawerClipMode.Docked" Fixed="true">
+        <MudDrawerContainer>
+            <MudText Class="mt-4 mx-4" Typo="Typo.subtitle2" Align="Align.Left">
+            INFO
+        </MudText>
+        <MudDivider Class="my-3" DividerType="DividerType.FullWidth" />
+        <div class="mx-3 my-3" id="unique_id_scroll_section" style="height:400px;overflow: auto;">
+        <MudText Typo="Typo.body1" Align="Align.Justify">
+            @document.Title
+        </MudText>
+        <cite>
+            <MudText Typo="Typo.caption" Align="Align.Justify"> by Enore K., Macalalad J., Centeno.,
+                @if (document.DatePublished != null)
+                {
+                        @($"({document.DatePublished.Value.Year})")
+                }
+            </MudText>
+        </cite>
+            <MudDivider Class="my-3" DividerType="DividerType.FullWidth" />
+            <MudText Typo="Typo.caption">
+                ABSTRACT
+            </MudText>
+            <MudText Class="mx-2 my-2" Typo="Typo.body2" Align="Align.Justify"> @document.ShortDiscription </MudText>
+            </div>
+        <MudDivider Class="my-3" DividerType="DividerType.FullWidth" />
+        <MudButtonGroup DisableElevation="true" Class="mx-3 d-flex justify-center align-center" Color="Color.Inherit" Variant="Variant.Filled" Size="Size.Small">
+            <MudButton StartIcon="@Icons.Material.Filled.Download" IconColor="Color.Primary">Download</MudButton>
+            <MudToggleIconButton Icon="@Icons.Material.Filled.AddCircle" Color="@Color.Primary" Title="Add to library"
+                                 ToggledIcon="@Icons.Material.Filled.DownloadDone" ToggledTitle="Added to library" ToggledColor="@Color.Secondary" />
+            <MudToggleIconButton Icon="@Icons.Material.Filled.BookmarkAdd" Color="@Color.Primary"
+                                 ToggledIcon="@Icons.Material.Filled.BookmarkAdded" ToggledColor="@Color.Secondary" />
+            <MudIconButton Color="@Color.Primary" Icon="@Icons.Material.Filled.KeyboardReturn" OnClick="Back"></MudIconButton>
+        </MudButtonGroup>
+        <MudDivider Class="my-3" DividerType="DividerType.FullWidth" />
+        </MudDrawerContainer>
+    <MudScrollToTop />
+</MudDrawer>
+
+@code{
+    [Parameter]
+    public Document document { get; set; } = new Document();
+    [Parameter]
+    public bool IsOpen { get; set; }
+    public void Back()
+    {
+        IsOpen = !IsOpen;
+    }
+
+}
