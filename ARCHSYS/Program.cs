@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Services;
 using ARCHSYS.SERVICE.Documents.Interface;
+using ARCHSYS.SERVICE.Authors.Interface;
 using ARCHSYS.PLUGINS_INMEMORY;
 using Microsoft.EntityFrameworkCore;
+using ARCHSYS.SERVICE.Authors;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMudServices();
@@ -21,10 +23,14 @@ builder.Services.AddTransient<IViewDocumentsBySearchTerm, ViewDocumentsBySearchT
 #endregion
 
 #region Dependency Injection of Services | Use Cases
+//Document Service
 builder.Services.AddTransient<IAddDocumentService, AddDocumentService>();
 builder.Services.AddTransient<IEditDocumentService, EditDocumentService>();
 builder.Services.AddTransient<IViewDocumentById, ViewDocumentById>();
 builder.Services.AddTransient<IDocumentRepository, DocumentRepository>();
+//Author Service
+builder.Services.AddTransient<IViewAuthors, ViewAuthors>();
+builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
 #endregion
 
 

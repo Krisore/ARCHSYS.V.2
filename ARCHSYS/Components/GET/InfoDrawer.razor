@@ -9,10 +9,19 @@
             @document.Title
         </MudText>
         <cite>
-            <MudText Typo="Typo.caption" Align="Align.Justify"> by Enore K., Macalalad J., Centeno.,
+            <MudText Typo="Typo.caption" Align="Align.Justify">
+                @foreach(var author in authors)
+                {
+                  @if(document.Id == author.DocumentId)
+                  {
+                       <li class="d-inline">
+                           @author.FirstName  @author.MiddleInitial .,
+                       </li>
+                  }
+                }
                 @if (document.DatePublished != null)
                 {
-                        @($"({document.DatePublished.Value.Year})")
+                   @($"({document.DatePublished.Value.Year})")
                 }
             </MudText>
         </cite>
@@ -39,6 +48,8 @@
 @code{
     [Parameter]
     public Document document { get; set; } = new Document();
+    [Parameter]
+    public List<Author> authors { get; set; } = new List<Author>();
     [Parameter]
     public bool IsOpen { get; set; }
     public void Back()

@@ -16,7 +16,7 @@ public class DocumentRepository : IDocumentRepository
     {
         if (database.Documents.Any(d => d.Title.Equals(document.Title, StringComparison.OrdinalIgnoreCase))) return Task.CompletedTask;
         var maxId = database.Documents.Max(d => d.Id);
-        document.Id = maxId++;
+        document.Id = maxId + 2;
         database.Documents.Add(document);
         return Task.CompletedTask;
     }

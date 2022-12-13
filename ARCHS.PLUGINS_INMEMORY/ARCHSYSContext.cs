@@ -19,10 +19,133 @@ public class ARCHSYSContext : DbContext
 
     }
     public DbSet<Document> Documents { get; set; }
+    public DbSet<Author> Authors { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) 
     {
         //SINEEEED KO UNG DATA DITO MGA LODS : 
+        modelBuilder.Entity<Author>().HasData(
+                        new Author
+                        {
+                             AuthorId = 1,
+                             FirstName = "Priya",
+                             LastName = "Shadya",
+                             MiddleInitial = "Van",
+                             DocumentId = 1
+                        },
+                        new Author
+                        {
+                            AuthorId = 2,
+                            FirstName = "Katharina",
+                            LastName = "Malini",
+                            MiddleInitial = " Mata",
+                            DocumentId = 1
+                        },
+                        new Author
+                        {
+                            AuthorId = 3,
+                            FirstName = "Katharina",
+                            LastName = "Malini",
+                            MiddleInitial = " M",
+                            DocumentId = 1
+                        },
+                         new Author
+                         {
+                             AuthorId = 4,
+                             FirstName = "Eveleen",
+                             LastName = "Mihaela",
+                             MiddleInitial = "S",
+                             DocumentId = 3
+                         },
+                        new Author
+                        {
+                            AuthorId = 5,
+                            FirstName = "Marilyn",
+                            LastName = "Dejana ",
+                            MiddleInitial = "S",
+                            DocumentId = 3
+                        },
+                        new Author
+                        {
+                            AuthorId = 6,
+                            FirstName = "Radana",
+                            LastName = " Anželika",
+                            MiddleInitial = "C",
+                            DocumentId = 3
+                        },
+                         new Author
+                         {
+                             AuthorId = 7,
+                             FirstName = "Eveleen",
+                             LastName = "Mihaela",
+                             MiddleInitial = "S",
+                             DocumentId = 4
+                         },
+                        new Author
+                        {
+                            AuthorId = 8,
+                            FirstName = "Marilyn",
+                            LastName = "Dejana ",
+                            MiddleInitial = "S",
+                            DocumentId = 4
+                        },
+                        new Author
+                        {
+                            AuthorId = 9,
+                            FirstName = "Radana",
+                            LastName = " Anželika",
+                            MiddleInitial = "C",
+                            DocumentId = 4
+                        },
+                        new Author
+                        {
+                            AuthorId = 10,
+                            FirstName = "Eveleen",
+                            LastName = "Mihaela",
+                            MiddleInitial = "S",
+                            DocumentId = 5
+                        },
+                        new Author
+                        {
+                            AuthorId = 11,
+                            FirstName = "Marilyn",
+                            LastName = "Dejana ",
+                            MiddleInitial = "S",
+                            DocumentId = 5
+                        },
+                        new Author
+                        {
+                            AuthorId = 12,
+                            FirstName = "Radana",
+                            LastName = " Anželika",
+                            MiddleInitial = "C",
+                            DocumentId = 5
+                        },
+                         new Author
+                         {
+                             AuthorId = 13,
+                             FirstName = "Priya",
+                             LastName = "Shadya",
+                             MiddleInitial = "Van",
+                             DocumentId = 2
+                         },
+                        new Author
+                        {
+                            AuthorId = 14,
+                            FirstName = "Katharina",
+                            LastName = "Malini",
+                            MiddleInitial = " Mata",
+                            DocumentId = 2
+                        },
+                        new Author
+                        {
+                            AuthorId = 15,
+                            FirstName = "Katharina",
+                            LastName = "Malini",
+                            MiddleInitial = " M",
+                            DocumentId = 2
+                        }
+                        );
         modelBuilder.Entity<Document>().HasData(
                 new Document
                 {
@@ -64,6 +187,7 @@ public class ARCHSYSContext : DbContext
                      Title = "Kadet Progress Monitoring and Coach Task Designation System for a\r\nCareer Development Organization with Collaborative Technology",
                      ShortDiscription = "The developed system is purposely done by the developers for their\r\nclient Kadakareer.A non - profit organization that has the goal to bring the\r\nbridge to the career gap of the local youth residing in the rural areas of the\r\nPhilippines.The task designation and monitoring system developed is linked\r\nto the existing web application of KadaKareer which is the Coach Connector.\r\nIn accordance with the objectives, the developers met the following\r\nobjectives: develop the system that matches the need of the target users and\r\nevaluate the system in terms of functional suitability and usability.",
                      DatePublished = new DateTime(2022, 03, 26)
+
                  });
     }
 }

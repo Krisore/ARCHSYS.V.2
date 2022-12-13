@@ -1,10 +1,11 @@
-﻿@inject IViewDocumentsBySearchTerm ViewDocumentsBySearchTerm
+﻿
+@inject IViewDocumentsBySearchTerm ViewDocumentsBySearchTerm
+@inject IViewAuthors ViewAuthors
 <MudList Class="my-2">
     <MudDivider DividerType="DividerType.Middle" />
      <div class="mx-3 my-3" id="unique_id_scroll_section" style="height:800px;overflow: auto;">
     @foreach (var research in listofDocuments)
     {
-       
         <MudListItem OnClick="((e) => OnClickInfo(research))">
             <MudCard Class="cursor-pointer" Elevation="1">
                 <MudCardContent>
@@ -12,18 +13,17 @@
                         <strong>@research.Title</strong>
                     </MudText>
                     <MudText Class="d-inline" Typo="Typo.subtitle2"> by </MudText>
-                    @*<cite>
-                @foreach (var author in AuthorService.Authors ?? throw new Exception(message: "authors are null here"))
-                {
-                if (research.Id.Equals(author.ResearchId))
-                {
-                <MudText Class="d-inline" Typo="Typo.caption" Align="Align.Left">
-                @author.LastName @author.MiddleInitial. ,
-                </MudText>
-                }
-                }
-                (@research.PublishDate.Value.Year)
-                </cite>*@
+                        <MudText Typo="Typo.subtitle2">
+                            <cite>
+                                @foreach(var author in listofAuthors)
+                                {
+                                    @if (research.Id == author.DocumentId)
+                                    {
+                                        @Format(author.FirstName, author.MiddleInitial, author)
+                                    }
+                                }
+                            </cite>
+                        </MudText>
                     <MudText Class="d-block mb-2" Typo="Typo.caption" Align="Align.Right">
                         Capstone Advisor : Prof. Michael Angelo Miguel
                     </MudText>
@@ -48,7 +48,7 @@
     </div>
     <MudDivider DividerType="DividerType.Middle" Class="my-3" />
 </MudList>
-<InfoDrawer document="_document" IsOpen="IsOpen"/>
+<InfoDrawer document="_document" IsOpen="IsOpen" authors="listofAuthors"/>
 <div class="d-flex flex-column align-center">
     <MudPagination BoundaryCount="1" MiddleCount="1" Count="22" @bind-Selected="@_selected" />
 </div>
@@ -58,6 +58,8 @@
 
 @code {
     private List<Document> listofDocuments = new List<Document>();
+    private List<Author> listofAuthors = new List<Author>();
+    private Author author { get; set; } = new Author();
     private Document _document = new();
     private int _selected = 11;
     [Parameter]
@@ -66,10 +68,17 @@
     protected override async Task OnParametersSetAsync()
     {
         listofDocuments = (await ViewDocumentsBySearchTerm.ExecuteAsync(this.SearchTerm)).ToList();
+        listofAuthors = (await ViewAuthors.ExecuteAsync()).ToList();
     }
     private void OnClickInfo(Document document)
     {
         _document = document;
         IsOpen = !IsOpen;
+    }
+    private string Format(string FirstName, string MiddleInitial, Author currentAuthor)
+    {
+        this.author = currentAuthor;
+        string formated = $"{FirstName} {MiddleInitial[0]}., ";
+        return formated;
     }
 }
