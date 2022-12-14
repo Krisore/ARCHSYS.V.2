@@ -1,0 +1,49 @@
+﻿@inject IViewAuthors ViewAuthors
+@inject NavigationManager NavigationManager
+
+<MudSimpleTable Hover="true" FixedHeader="true" Bordered="true" Dense="true" Style="height:300px;">
+    <thead>
+        <tr>
+            <td> First Name </td>
+            <td> Last Name </td>
+            <td> Middle Name </td>
+            <td> Program </td>
+            <td></td>
+        </tr>
+        
+    </thead>
+    <tbody>
+        @foreach(var author in listofAuthors)
+        {
+            <tr>
+                <td> @author.FirstName </td>
+                <td> @author.LastName</td>
+                <td> @author.MiddleInitial </td>
+                <td> @author.AcademicProgram </td>
+                <td>
+                    <MudIconButton Icon="@Icons.Rounded.Edit" Size="Size.Small" Color="Color.Secondary" Variant="Variant.Filled" DisableElevation="true"
+                           OnClick="@(() => EditDocument(author.AuthorId))">
+                    </MudIconButton>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</MudSimpleTable>
+
+
+
+
+@code {
+    public List<Author> listofAuthors { get; set; } = new List<Author>();
+    [Parameter]
+    public int authorId { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        listofAuthors = (await ViewAuthors.ExecuteAsync()).ToList();
+    }
+    private void EditDocument(int authorId)
+    {
+        NavigationManager.NavigateTo($"/editauthor/{authorId}");
+    }
+}

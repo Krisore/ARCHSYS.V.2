@@ -30,6 +30,7 @@ builder.Services.AddTransient<IViewDocumentById, ViewDocumentById>();
 builder.Services.AddTransient<IDocumentRepository, DocumentRepository>();
 //Author Service
 builder.Services.AddTransient<IViewAuthors, ViewAuthors>();
+builder.Services.AddTransient<IViewAuthorById, ViewAuthorById>();
 builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
 #endregion
 

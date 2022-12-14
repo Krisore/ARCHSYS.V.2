@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ARCHSYS.SERVICE.PluginInterfaces
+namespace ARCHSYS.SERVICE.PluginInterfaces;
+
+public interface IAuthorRepository
 {
-    public interface IAuthorRepository
-    {
-       Task<IEnumerable<Author>> GetAllAuthorsAsync();
-    }
+   Task<IEnumerable<Author>> GetAllAuthorsAsync();
+   Task<Author> GetAuthorByIdAsync(int authorId);
 }

@@ -1,19 +1,21 @@
-﻿@inherits LayoutComponentBase
+﻿
+@inherits LayoutComponentBase
 <MudThemeProvider Theme="MyCustomTheme" @bind-IsDarkMode="IsDarkMode" />
 <MudDialogProvider />
 <MudSnackbarProvider />
+@inject IDialogService DialogService
 <MudLayout>
     <MudAppBar Fixed="true" Dense="true" Color="Color.Default" Elevation="2">
         <MudToggleIconButton Size="Size.Small" @bind-Toggled="@IsDrawerOpen" Color="Color.Default" Icon="@Icons.Material.Filled.Menu" Edge="Edge.Start"
         ToggledIcon="@Icons.Material.Outlined.Close" ToggledSize="Size.Small"/>
             <MudSpacer/>
-        <MudButton StartIcon="@Icons.Material.Filled.Add" Class="rounded-0 mx-2" Href="/upload" Variant="Variant.Outlined" Disabled="false" DisableElevation="true">
+        <MudButton Size="Size.Small" StartIcon="@Icons.Material.Filled.Add" Class="rounded-0 mx-2" Href="/upload" Variant="Variant.Outlined" Disabled="false" DisableElevation="true">
             UPLOAD
         </MudButton>
-        <MudButton Class="rounded-0" Variant="Variant.Filled" Disabled="true" DisableElevation="true">
+        <MudButton OnClick="@((e) => BeginLogin(dialog))" Size="Size.Small" Class="rounded-0" Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true">
             SIGN IN
         </MudButton>
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert"/>
+        <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.MoreVert" />
         <MudToggleIconButton @bind-Toggled="@IsDarkMode"
                              Icon="@Icons.Sharp.DarkMode"
                              Color="Color.Dark"
@@ -26,7 +28,15 @@
                              ToggledTitle="Go to Light Mode" />
     </MudAppBar>
     <MudDrawer @bind-Open="IsDrawerOpen" ClipMode="DrawerClipMode.Always" Elevation="1">
-        <NavigationLayout/>
+        <div class="mx-4">
+            <div class="my-2">
+                <NavigationLayout />
+            </div>
+            <div class="my-2">
+                <TreeView />
+            </div>
+        </div>
+        <MudDivider DividerType="DividerType.FullWidth"/>
     </MudDrawer>
     <MudMainContent Class="my-14">
         <MudContainer MaxWidth="MaxWidth.ExtraLarge">
@@ -44,12 +54,20 @@
 @code {
     public bool IsDrawerOpen { get; set; }
     public bool IsDarkMode { get; set; }
+    private DialogOptions dialog = new DialogOptions()
+    {
+            Position = DialogPosition.TopCenter,
+            CloseButton = true,
+            NoHeader = false,
+            DisableBackdropClick = false,
+    };
+    private void BeginLogin(DialogOptions options) => DialogService.Show<LoginMenu>("", options);
     MudTheme MyCustomTheme = new MudTheme()
         {
             Palette = new Palette()
             {
-                Primary = Colors.Amber.Default,
-                Secondary = Colors.Green.Accent4,
+                Primary = Colors.Red.Darken4,
+                Secondary = Colors.Yellow.Accent4,
                 AppbarBackground = Colors.Shades.White,
             },
             PaletteDark = new PaletteDark()

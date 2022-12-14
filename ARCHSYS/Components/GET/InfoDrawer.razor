@@ -4,7 +4,7 @@
             INFO
         </MudText>
         <MudDivider Class="my-3" DividerType="DividerType.FullWidth" />
-        <div class="mx-3 my-3" id="unique_id_scroll_section" style="height:400px;overflow: auto;">
+        <div class="mx-3 my-3" id="unique_id_scroll_section" style="height:438px;overflow: auto;">
         <MudText Typo="Typo.body1" Align="Align.Justify">
             @document.Title
         </MudText>
@@ -29,15 +29,13 @@
             <MudText Typo="Typo.caption">
                 ABSTRACT
             </MudText>
-            <MudText Class="mx-2 my-2" Typo="Typo.body2" Align="Align.Justify"> @document.ShortDiscription </MudText>
+            <MudText Class="mx-2 my-2" Typo="Typo.body2" Align="Align.Justify"> @document.Abstract </MudText>
             </div>
         <MudDivider Class="my-3" DividerType="DividerType.FullWidth" />
         <MudButtonGroup DisableElevation="true" Class="mx-3 d-flex justify-center align-center" Color="Color.Inherit" Variant="Variant.Filled" Size="Size.Small">
             <MudButton StartIcon="@Icons.Material.Filled.Download" IconColor="Color.Primary">Download</MudButton>
-            <MudToggleIconButton Icon="@Icons.Material.Filled.AddCircle" Color="@Color.Primary" Title="Add to library"
-                                 ToggledIcon="@Icons.Material.Filled.DownloadDone" ToggledTitle="Added to library" ToggledColor="@Color.Secondary" />
-            <MudToggleIconButton Icon="@Icons.Material.Filled.BookmarkAdd" Color="@Color.Primary"
-                                 ToggledIcon="@Icons.Material.Filled.BookmarkAdded" ToggledColor="@Color.Secondary" />
+            <MudToggleIconButton Icon="@Icons.Material.Filled.Bookmark" Color="@Color.Primary"
+                                 ToggledIcon="@Icons.Material.Filled.Bookmark" ToggledColor="@Color.Secondary" />
             <MudIconButton Color="@Color.Primary" Icon="@Icons.Material.Filled.KeyboardReturn" OnClick="Back"></MudIconButton>
         </MudButtonGroup>
         <MudDivider Class="my-3" DividerType="DividerType.FullWidth" />

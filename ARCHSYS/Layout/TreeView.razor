@@ -1,0 +1,48 @@
+﻿<MudNavGroup Title="Year">
+    <MudTreeView MultiSelection="true" @bind-SelectedValues="SelectedValues">
+        <MudTreeViewItem Value="@($"2022 ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"2021 ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"2020 ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"2019 ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"2018 ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"2017 ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"2016 ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"2015 ({0})")" TextTypo="Typo.body2" />
+    </MudTreeView>
+</MudNavGroup>
+<MudNavGroup Title="Topic">
+    <MudTreeView MultiSelection="true" @bind-SelectedValues="SelectedValues">
+        <MudTreeViewItem Value="@($" Agriculture ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($" Technology ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($" Education ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($" Health ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($" Business ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($" Environment ({0})")" TextTypo="Typo.body2" />
+    </MudTreeView>
+</MudNavGroup>
+<MudNavGroup Title="Academic Program">
+    <MudTreeView MultiSelection="true" @bind-SelectedValues="SelectedValues">
+        <MudTreeViewItem Value="@($"BEED ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"BSA ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"BSBA-HRM ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"BSCpE ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"BSIE ({0})")" TextTypo="Typo.body2"  />
+        <MudTreeViewItem Value="@($"BSIT ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"BSEDEN ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"BSEDSS ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"DCET ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"DICT ({0})")" TextTypo="Typo.body2" />
+    </MudTreeView>
+</MudNavGroup>
+<MudNavGroup Title="Document Type">
+    <MudTreeView MultiSelection="true" @bind-SelectedValues="SelectedValues">
+        <MudTreeViewItem Value="@($"Thesis ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"Capstone ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"Journal ({0})")" TextTypo="Typo.body2" />
+        <MudTreeViewItem Value="@($"Case Study ({0})")" TextTypo="Typo.body2" />
+    </MudTreeView>
+</MudNavGroup>
+
+@code {
+    private HashSet<string>? SelectedValues { get; set; }
+}

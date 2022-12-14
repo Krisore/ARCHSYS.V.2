@@ -1,0 +1,64 @@
+﻿@inherits LayoutComponentBase
+<MudThemeProvider Theme="MyCustomTheme" @bind-IsDarkMode="IsDarkMode" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudLayout>
+    <MudAppBar Dense="true">
+        <MudSpacer/>
+        <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.MoreVert" />
+        <MudToggleIconButton @bind-Toggled="@IsDarkMode"
+                             Icon="@Icons.Sharp.DarkMode"
+                             Color="Color.Dark"
+                             Title="Go to Dark Mode"
+                             ToggledIcon="@Icons.Sharp.LightMode"
+                             ToggledColor="@Color.Success"
+                             Edge="Edge.End"
+                             Size="Size.Small"
+                             ToggledSize="Size.Small"/>
+    </MudAppBar>
+    <MudDrawer PreserveOpenState="true" @bind-Open="@IsDrawerOpen" ClipMode="DrawerClipMode.Always" Elevation="1" Variant="@DrawerVariant.Mini" OpenMiniOnHover="true">
+        <div class="my-2 mx-4">
+            <ArchivistNavMenu />
+        </div>
+    </MudDrawer>
+    <MudMainContent Class="my-14">
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+    <MudScrollToTop>
+        <MudFab Color="Color.Secondary" Icon="@Icons.Filled.KeyboardArrowUp" Size="Size.Small" />
+    </MudScrollToTop>
+</MudLayout>
+
+@code {
+    public bool IsDrawerOpen { get; set; }
+    public bool IsDarkMode { get; set; }
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            Palette = new Palette()
+            {
+                Primary = Colors.Red.Darken4,
+                Secondary = Colors.Yellow.Accent4,
+                AppbarBackground = Colors.Shades.White,
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = Colors.Blue.Lighten1
+            },
+
+            LayoutProperties = new LayoutProperties()
+            {
+                DrawerWidthLeft = "260px",
+                DrawerWidthRight = "350px",
+                DrawerMiniWidthLeft = "78px"
+            },
+            Typography = new Typography()
+            {
+                Default = new Default()
+                {
+                    FontFamily = new[] { "Poppins", "Helvetica", "Arial", "sans-serif" }
+                }
+            }
+        };
+}

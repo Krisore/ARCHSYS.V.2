@@ -14,6 +14,7 @@ public class Document
     public string Title { get; set; } = string.Empty;
     [Required]
     public string ShortDiscription { get; set; } = string.Empty;
+    public string Abstract { get; set; } = string.Empty;
     [Required]
     public DateTime? DatePublished { get; set; }
     [Required]

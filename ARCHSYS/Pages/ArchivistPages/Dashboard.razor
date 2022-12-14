@@ -1,0 +1,21 @@
+﻿@page "/dashboard"
+@layout ArchivistLayout
+<MudContainer MaxWidth="MaxWidth.ExtraLarge">
+    <MudText Typo="Typo.h6" Class="my-2">
+        Summary
+    </MudText>
+    <MudDivider Class="my-2" DividerType="DividerType.Middle" />
+    <SummaryCard />
+    <MudDivider Class="my-2" DividerType="DividerType.Middle"/>
+    <div class="my-2 d-block flex justify-center align-center">
+        <MudText Class="mx-4" Typo="Typo.body1">
+            Files Summary 🚀
+        </MudText>
+        <SummaryComponent/>
+    </div>
+    <SummaryTables/>
+</MudContainer>
+@code {
+        
+    
+}

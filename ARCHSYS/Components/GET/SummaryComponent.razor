@@ -1,0 +1,36 @@
+﻿@layout ArchivistLayout
+<MudGrid Spacing="7" Justify="Justify.Center">
+    <MudItem>
+        <MudChart ChartType="ChartType.Donut" Width="200px" Height="300px" InputData="@data" InputLabels="@labels" LegendPosition="Position.Bottom">
+            <CustomGraphics>
+                <text class="donut-inner-text align-center justify-center" x="50%" y="40%" dominant-baseline="middle" text-anchor="middle" fill="gray" font-family="Poppins" font-size="2"> Total Active Files :</text>
+                <text class="donut-inner-text" x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="gray" font-family="Poppins" font-size="6">@data.Sum().ToString()</text>
+            </CustomGraphics>
+        </MudChart>
+    </MudItem>
+    <MudItem>
+        <MudChart ChartType="ChartType.Line" ChartSeries="@Series" XAxisLabels="@XAxisLabels" Height="300px" Width="500px" LegendPosition="Position.Bottom">
+            <CustomGraphics>
+                <style>
+                    .heavy {
+                        font: gray 16px Poppins;
+                        fill: gray;
+                    }
+                </style>
+                <text x="100" y="50" class="heavy">Document Files per year</text>
+            </CustomGraphics>
+        </MudChart>
+    </MudItem>
+</MudGrid>
+@code{
+    public double[] data = { 25, 77, 28, 5 };
+        public string[] labels = { "BSCpE", "BSIT", "DCIT", "DCE" };
+
+        public List<ChartSeries> Series = new List<ChartSeries>()
+        {
+            new ChartSeries() { Name = "Active", Data = new double[] { 40, 20, 25, 27, 46, 60, 48, 80} },
+            new ChartSeries() { Name = "In-active", Data = new double[] { 19, 24, 35, 13, 28, 15, 13, 16} },
+            new ChartSeries() { Name = "Archieved", Data = new double[] { 8, 6, 11, 13, 4, 16, 10, 16 } },
+        };
+        public string[] XAxisLabels = { "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"};
+}

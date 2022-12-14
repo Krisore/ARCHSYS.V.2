@@ -1,10 +1,7 @@
 ﻿@page "/documents"
 @inject NavigationManager NavigationManager
-<PageTitle> Documents 📃 </PageTitle>
 <SearchComponent OnSearch="HandleSearch"/>
-<br/>
 <DocumentsTableListComponent SearchTerm="@searchTerm"/>
-<br/>
 <MudButton Variant="Variant.Filled" Size="Size.Medium" OnClick="AddDocument">
     UPLOAD
 </MudButton>
