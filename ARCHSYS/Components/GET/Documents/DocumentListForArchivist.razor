@@ -1,0 +1,94 @@
+﻿@inject IViewDocumentsBySearchTerm ViewDocumentsBySearchTerm
+@inject IViewAuthors ViewAuthors
+
+    <MudSimpleTable Hover="true" FixedHeader="true" Style="overflow: auto;" Striped="false" Bordered="true" Dense="false">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Program
+                </th>
+                <th>
+                    Author / Authors
+                </th>
+                <th>
+                    Year
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var document in listofDocuments)
+            {
+                <tr>
+                    <td>
+                        <MudCheckBox Checked="false" UnCheckedColor="Color.Info" Color="Color.Success" Size="Size.Small"></MudCheckBox>
+                    </td>
+                    <td>
+                        @document.Title
+                    </td>
+                    <td>
+                        @foreach (var author in listofAuthors)
+                        {
+                            if (document.Id == author.DocumentId)
+                            {
+                                @($"{author.LastName} {author.MiddleInitial}., ")
+                            }
+                        }
+                    </td>
+                    <td>
+                        @document.AcademicProgram
+                    </td>
+                    <td>
+                        @if (document.DatePublished != null)
+                        {
+                            @document.DatePublished.Value.Year
+                        }
+                    </td>
+                    <td>
+                        @if(document.IsActive)
+                        {
+                            <MudChip Color="Color.Success" Size="Size.Small">
+                                Active
+                            </MudChip>
+                        }
+                        else
+                        {
+                            <MudChip Color="Color.Warning" Size="Size.Small">
+                                In-active
+                            </MudChip>
+                        }
+                </td>
+                    <td>
+                        <MudButtonGroup Color="Color.Default" DisableElevation="true" Variant="Variant.Filled" Size="Size.Small">
+                        <MudToggleIconButton Icon="@Icons.Material.Filled.Archive" Color="@Color.Error"
+                                         ToggledIcon="@Icons.Material.Filled.Check" ToggledColor="@Color.Success" />
+                            <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error"></MudIconButton>
+                        </MudButtonGroup>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </MudSimpleTable>
+@code {
+    public List<Document> listofDocuments = new List<Document>();
+    public List<Author> listofAuthors { get; set; } = new List<Author>();
+    [Parameter]
+    public string SearchTerm { get; set; } = string.Empty;
+    protected override async Task OnParametersSetAsync()
+    {
+        listofDocuments = (await ViewDocumentsBySearchTerm.ExecuteAsync(this.SearchTerm)).ToList();
+        listofAuthors = (await ViewAuthors.ExecuteAsync()).ToList();
+    }
+}
+

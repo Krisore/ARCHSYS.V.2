@@ -1,0 +1,16 @@
+﻿@page "/archieve"
+@layout ArchivistLayout
+
+<PageTitle> Archieve 📦</PageTitle>
+<MudContainer Class="my-4" MaxWidth="MaxWidth.Medium">
+<SearchComponent OnSearch="HandleSearch"/>
+<DocumentListForArchivist SearchTerm="@searchTerm"/>
+</MudContainer>
+
+@code {
+    private string searchTerm = string.Empty;
+    protected void HandleSearch(string searchTerm)
+    {
+        this.searchTerm = searchTerm;
+    }
+}

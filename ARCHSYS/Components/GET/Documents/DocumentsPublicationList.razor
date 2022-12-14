@@ -1,0 +1,50 @@
+﻿@inject IViewDocuments ViewDocuments
+<MudSimpleTable>
+    <thead>
+        <tr>
+            <th>
+                TITLE
+            </th>
+            <th>
+                YEAR
+            </th>
+            <th>
+                STATUS
+            </th>
+            <th>
+                Capstone Advisor
+            </th>
+            <th>
+                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var document in Documents)
+        {
+         <tr>
+              <td>
+                 @document.Title
+              </td>
+               <td>
+                    @document.DatePublished.Value.Year.ToString()
+               </td>
+                <td>
+                     <MudChip Variant="Variant.Text" Color="Color.Info">
+                            To Review
+                     </MudChip>
+                </td>
+                <td>
+                    Angeliko Centeno Jr.
+                </td>
+          </tr>   
+        }
+    </tbody>
+</MudSimpleTable>
+@code {
+    public List<Document> Documents { get; set; } = new List<Document>();
+    protected async override Task OnInitializedAsync()
+    {
+        this.Documents = (await ViewDocuments.ExecuteAsync()).ToList();
+    }
+}

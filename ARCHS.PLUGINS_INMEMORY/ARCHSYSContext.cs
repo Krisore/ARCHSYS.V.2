@@ -168,7 +168,9 @@ public class ARCHSYSContext : DbContext
                     Title = "PUPBC : Chatbot",
                     Abstract = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." +
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-                     DatePublished = new DateTime(2022, 03, 25)
+                     DatePublished = new DateTime(2022, 03, 25),
+                    AcademicProgram = "Bachelor of Science in Information Technology (BSIT)",
+                    IsActive = true
 
                 },
                 new Document
@@ -178,7 +180,9 @@ public class ARCHSYSContext : DbContext
                     Title = "PUPBC : Inventory System",
                     Abstract = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." +
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-                    DatePublished = new DateTime(2022, 03, 25)
+                    DatePublished = new DateTime(1999, 03, 25),
+                    AcademicProgram = "Bachelor of Science in Information Technology (BSIT)",
+                    IsActive = false
 
                 },
                 new Document
@@ -188,7 +192,9 @@ public class ARCHSYSContext : DbContext
                     ShortDiscription = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,",
                     Abstract = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." +
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-                    DatePublished = new DateTime(2022, 03, 25)
+                    DatePublished = new DateTime(2022, 03, 25),
+                    AcademicProgram = "Bachelor of Science in Information Technology (BSIT)",
+                    IsActive = true
                 },
                  new Document
                  {
@@ -197,7 +203,9 @@ public class ARCHSYSContext : DbContext
                      Title = "PUPBC : Room Management System",
                      Abstract = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. " +
                     "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-                     DatePublished = new DateTime(2022, 03, 25)
+                     DatePublished = new DateTime(2012, 03, 25),
+                     AcademicProgram = "Bachelor of Science in Information Technology (BSIT)",
+                      IsActive = false
                  },
                  new Document 
                  {
@@ -205,7 +213,9 @@ public class ARCHSYSContext : DbContext
                      ShortDiscription = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,",
                      Title = "Kadet Progress Monitoring and Coach Task Designation System for a\r\nCareer Development Organization with Collaborative Technology",
                      Abstract = "The developed system is purposely done by the developers for their\r\nclient Kadakareer.A non - profit organization that has the goal to bring the\r\nbridge to the career gap of the local youth residing in the rural areas of the\r\nPhilippines.The task designation and monitoring system developed is linked\r\nto the existing web application of KadaKareer which is the Coach Connector.\r\nIn accordance with the objectives, the developers met the following\r\nobjectives: develop the system that matches the need of the target users and\r\nevaluate the system in terms of functional suitability and usability.",
-                     DatePublished = new DateTime(2022, 03, 26)
+                     DatePublished = new DateTime(2022, 03, 26),
+                     AcademicProgram = "Bachelor of Science in Information Technology (BSIT)",
+                      IsActive = true
 
                  });
     }

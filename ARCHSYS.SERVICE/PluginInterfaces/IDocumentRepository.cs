@@ -13,4 +13,6 @@ public interface IDocumentRepository
     Task<IEnumerable<Document>> GetDocumentsBySearchTermAsync(string searchTermme);
     Task UpdateDocementaryAsync(Document document);
     Task<Document> GetDocumentByIdAsync(int documentId);
+    Task<IEnumerable<Document>> GetDocumentsAsync();
+
 }

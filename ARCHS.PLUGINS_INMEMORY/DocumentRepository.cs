@@ -34,22 +34,27 @@ public class DocumentRepository : IDocumentRepository
         return await Task.FromResult(newDocument);
     }
 
+    public async Task<IEnumerable<Document>> GetDocumentsAsync()
+    {
+        return await Task.FromResult(database.Documents);
+    }
+
     public async Task<IEnumerable<Document>> GetDocumentsBySearchTermAsync(string searchTerm)
     {
         if (string.IsNullOrWhiteSpace(searchTerm)) return await Task.FromResult(database.Documents);
         return database.Documents.Where(d => d.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                                d.ShortDiscription.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
+                                d.ShortDiscription.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                                 d.DatePublished.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
     }
 
     public Task UpdateDocementaryAsync(Document document)
     {
-        if(database.Documents.Any(d => d.Id == document.Id && d.Title.Equals(document.Title, StringComparison.OrdinalIgnoreCase))) return Task.CompletedTask;
+        if (database.Documents.Any(d => d.Id == document.Id && d.Title.Equals(document.Title, StringComparison.OrdinalIgnoreCase))) return Task.CompletedTask;
         var currentDocument = database.Documents.FirstOrDefault(d => d.Id == document.Id);
-        if (currentDocument != null) 
+        if (currentDocument != null)
         {
             currentDocument.Id = document.Id;
-            currentDocument.Title= document.Title;
+            currentDocument.Title = document.Title;
             currentDocument.ShortDiscription = document.ShortDiscription;
             currentDocument.DatePublished = document.DatePublished;
         }

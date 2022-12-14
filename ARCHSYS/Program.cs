@@ -19,19 +19,20 @@ builder.Services.AddDbContext<ARCHSYSContext>(options =>
 });
 
 #region  Dependency Injection of Repositories | Db Context
-builder.Services.AddTransient<IViewDocumentsBySearchTerm, ViewDocumentsBySearchTerm>();
+builder.Services.AddTransient<IDocumentRepository, DocumentRepository>();
+builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
 #endregion
 
 #region Dependency Injection of Services | Use Cases
 //Document Service
 builder.Services.AddTransient<IAddDocumentService, AddDocumentService>();
 builder.Services.AddTransient<IEditDocumentService, EditDocumentService>();
+builder.Services.AddTransient<IViewDocumentsBySearchTerm, ViewDocumentsBySearchTerm>();
 builder.Services.AddTransient<IViewDocumentById, ViewDocumentById>();
-builder.Services.AddTransient<IDocumentRepository, DocumentRepository>();
+builder.Services.AddTransient<IViewDocuments, ViewDocuments>();
 //Author Service
 builder.Services.AddTransient<IViewAuthors, ViewAuthors>();
 builder.Services.AddTransient<IViewAuthorById, ViewAuthorById>();
-builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
 #endregion
 
 

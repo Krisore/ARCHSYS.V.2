@@ -1,10 +1,13 @@
 ﻿@page "/documents"
+@layout ArchivistLayout
 @inject NavigationManager NavigationManager
-<SearchComponent OnSearch="HandleSearch"/>
-<DocumentsTableListComponent SearchTerm="@searchTerm"/>
-<MudButton Variant="Variant.Filled" Size="Size.Medium" OnClick="AddDocument">
-    UPLOAD
-</MudButton>
+<MudContainer MaxWidth="MaxWidth.Medium">
+    <SearchComponent OnSearch="HandleSearch" />
+    <DocumentsTableListComponent SearchTerm="@searchTerm" />
+    <MudButton Variant="Variant.Filled" Size="Size.Medium" OnClick="AddDocument">
+        UPLOAD
+    </MudButton>
+</MudContainer>
 @code {
     private string searchTerm = string.Empty;
     protected void HandleSearch (string searchTerm)

@@ -1,0 +1,38 @@
+﻿
+@inject NavigationManager NavigationManager
+@if (Documents != null && Documents.Count > 0)
+{
+    @foreach (var document in Documents)
+    {
+        <tr>
+              <td>@document.Title</td>
+              <td>@document.ShortDiscription</td>
+                @if(document.DatePublished != null)
+                {
+                   <td> @document.DatePublished.Value.Year </td >
+                }
+             <td>
+                 <MudButton StartIcon="@Icons.Filled.FileDownload" DisableElevation="true" Size="Size.Small" Variant="Variant.Filled" Color="Color.Primary">
+                     PUP_THESIS_TITLE.PDF
+                 </MudButton>
+            </td>
+              <td>
+                <MudButtonGroup Color="Color.Primary" Variant="Variant.Outlined">
+                    <MudIconButton Icon="@Icons.Material.Filled.Delete"></MudIconButton>
+                    <MudButton Size="Size.Small" Variant="Variant.Outlined" DisableElevation="true"
+                       OnClick="@(() => EditDocument(document.Id))">
+                        EDIT
+                    </MudButton>
+                </MudButtonGroup>
+              </td>
+        </tr>
+    }
+}
+@code {
+    [Parameter]
+    public List<Document> Documents { get; set; } = new List<Document>();
+    private void EditDocument(int documentId)
+    {
+        NavigationManager.NavigateTo($"/editdocument/{documentId}");
+    }
+}

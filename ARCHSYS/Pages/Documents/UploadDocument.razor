@@ -1,6 +1,7 @@
 ﻿@page "/upload"
 @inject IAddDocumentService AddDocumentService
 @inject NavigationManager NavigationManger
+@layout ArchivistLayout
 <EditForm Model="document" OnValidSubmit="SaveDocument">
     <DataAnnotationsValidator/>
     <ValidationSummary/>

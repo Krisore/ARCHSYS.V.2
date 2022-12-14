@@ -19,5 +19,7 @@ public class Document
     public DateTime? DatePublished { get; set; }
     [Required]
     public List<Author> Authors { get; set; } = new List<Author>();
+    public string AcademicProgram { get; set; } = string.Empty;
+    public bool IsActive { get; set; }
 
 }
