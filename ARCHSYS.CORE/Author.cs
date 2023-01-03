@@ -13,5 +13,5 @@ public class Author
     public string LastName { get; set; } = string.Empty;
     public string MiddleInitial { get; set; } = string.Empty;
     public int DocumentId { get; set; }
-    public string AcademicProgram { get; set; } = string.Empty;
+    public int AcademicProgramId { get; set; } 
 }

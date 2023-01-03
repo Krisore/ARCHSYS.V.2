@@ -6,10 +6,10 @@
     {
         <tr>
               <td>@document.Title</td>
-              <td>@document.ShortDiscription</td>
+              <td>@document.AcademicProgramId</td>
                 @if(document.DatePublished != null)
                 {
-                   <td> @document.DatePublished.Value.Year </td >
+                   <td> @document.DatePublished.Value.Year </td>
                 }
              <td>
                  <MudButton StartIcon="@Icons.Filled.FileDownload" DisableElevation="true" Size="Size.Small" Variant="Variant.Filled" Color="Color.Primary">

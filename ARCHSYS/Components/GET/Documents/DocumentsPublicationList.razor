@@ -1,5 +1,5 @@
 ﻿@inject IViewDocuments ViewDocuments
-<MudSimpleTable>
+<MudSimpleTable Bordered="true" Elevation="0" Hover="true" Dense="true" FixedHeader="true">
     <thead>
         <tr>
             <th>
@@ -27,7 +27,7 @@
                  @document.Title
               </td>
                <td>
-                    @document.DatePublished.Value.Year.ToString()
+                    @document.DatePublished?.Year.ToString()
                </td>
                 <td>
                      <MudChip Variant="Variant.Text" Color="Color.Info">

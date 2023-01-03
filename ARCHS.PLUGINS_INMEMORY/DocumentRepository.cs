@@ -24,13 +24,17 @@ public class DocumentRepository : IDocumentRepository
     public async Task<Document> GetDocumentByIdAsync(int documentId)
     {
         var document = await Task.FromResult(database.Documents.FirstOrDefault(d => d.Id == documentId));
-        var newDocument = new Document
+        Document newDocument = new ();
+        if(document != null) 
         {
-            Id = document.Id,
-            Title = document.Title,
-            ShortDiscription = document.ShortDiscription,
-            DatePublished = document.DatePublished,
-        };
+            newDocument = new Document
+            {
+                Id = document.Id,
+                Title = document.Title,
+                ShortDiscription = document.ShortDiscription,
+                DatePublished = document.DatePublished        };
+        }
+
         return await Task.FromResult(newDocument);
     }
 
@@ -41,10 +45,17 @@ public class DocumentRepository : IDocumentRepository
 
     public async Task<IEnumerable<Document>> GetDocumentsBySearchTermAsync(string searchTerm)
     {
-        if (string.IsNullOrWhiteSpace(searchTerm)) return await Task.FromResult(database.Documents);
-        return database.Documents.Where(d => d.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+        if (!string.IsNullOrWhiteSpace(searchTerm)) 
+        {
+            return database.Documents.Where(d => d.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                                 d.ShortDiscription.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                                d.DatePublished.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+                                d.DatePublished.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
+                                d.Authors.Any(a => a.FirstName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)|| 
+                                a.LastName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)|| 
+                                a.LastName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)));
+        }
+        return await Task.FromResult(database.Documents);
+        
     }
 
     public Task UpdateDocementaryAsync(Document document)

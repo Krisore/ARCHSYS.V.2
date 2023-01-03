@@ -26,15 +26,19 @@ public class AuthorRepository : IAuthorRepository
 	{
 
 		var currentAuthor = await Task.FromResult(database.Authors.FirstOrDefault(author => author.AuthorId == authorId));
-		var newAuthor  = new Author
+		Author newAuthor = new();
+		if(currentAuthor != null) 
 		{
+			newAuthor = new Author
+			{
 				AuthorId = currentAuthor.AuthorId,
 				FirstName = currentAuthor.FirstName,
 				LastName = currentAuthor.LastName,
 				MiddleInitial = currentAuthor.MiddleInitial,
-				AcademicProgram = currentAuthor.AcademicProgram,
+				AcademicProgramId = currentAuthor.AcademicProgramId,
 				DocumentId = currentAuthor.DocumentId,
-		};
+			};
+		}
 		return await Task.FromResult(newAuthor);
 		
 		

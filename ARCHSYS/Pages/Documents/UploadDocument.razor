@@ -1,7 +1,6 @@
 ﻿@page "/upload"
 @inject IAddDocumentService AddDocumentService
 @inject NavigationManager NavigationManger
-@layout ArchivistLayout
 <EditForm Model="document" OnValidSubmit="SaveDocument">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
@@ -18,12 +17,16 @@
                        ButtonType="ButtonType.Submit" 
                        Variant="Variant.Filled" 
                        Color="Color.Primary" 
-                       Class="mx-2">Publish</MudButton>
+                       Class="mx-2">
+                       Publish
+            </MudButton>
             <MudButton DisableElevation="true"
                        Variant="Variant.Outlined"
                        Color="Color.Primary"
                        Class="mx-2"
-                       OnClick="Cancel">Cancel</MudButton>
+                       OnClick="Cancel">
+                       Cancel
+            </MudButton>
         </MudCardActions>
     </MudCard>
 </EditForm>

@@ -4,18 +4,11 @@
 <MudContainer MaxWidth="MaxWidth.Medium">
     <SearchComponent OnSearch="HandleSearch" />
     <DocumentsTableListComponent SearchTerm="@searchTerm" />
-    <MudButton Variant="Variant.Filled" Size="Size.Medium" OnClick="AddDocument">
-        UPLOAD
-    </MudButton>
 </MudContainer>
 @code {
     private string searchTerm = string.Empty;
     protected void HandleSearch (string searchTerm)
     {
         this.searchTerm = searchTerm;
-    }
-    private void AddDocument()
-    {
-        NavigationManager.NavigateTo("/upload");
     }
 }

@@ -8,6 +8,8 @@ using ARCHSYS.SERVICE.Authors.Interface;
 using ARCHSYS.PLUGINS_INMEMORY;
 using Microsoft.EntityFrameworkCore;
 using ARCHSYS.SERVICE.Authors;
+using ARCHSYS.SERVICE.AcademicPrograms.Interface;
+using ARCHSYS.SERVICE.AcademicPrograms;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMudServices();
@@ -21,6 +23,7 @@ builder.Services.AddDbContext<ARCHSYSContext>(options =>
 #region  Dependency Injection of Repositories | Db Context
 builder.Services.AddTransient<IDocumentRepository, DocumentRepository>();
 builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
+builder.Services.AddTransient<IAcademicProgramRepository, AcademicProgramRepository>();
 #endregion
 
 #region Dependency Injection of Services | Use Cases
@@ -33,6 +36,9 @@ builder.Services.AddTransient<IViewDocuments, ViewDocuments>();
 //Author Service
 builder.Services.AddTransient<IViewAuthors, ViewAuthors>();
 builder.Services.AddTransient<IViewAuthorById, ViewAuthorById>();
+
+// Academic Program
+builder.Services.AddTransient<IViewAcademicProgramById, ViewAcademicProgramById>();
 #endregion
 
 

@@ -1,5 +1,6 @@
 ﻿using ARCHSYS.CORE;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,25 @@ public class ARCHSYSContext : DbContext
     }
     public DbSet<Document> Documents { get; set; }
     public DbSet<Author> Authors { get; set; }
+    public DbSet<AcademicProgram> AcademicPrograms { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) 
     {
-        //SINEEEED KO UNG DATA DITO MGA LODS : 
+        //!!IMPORTANT ALL SEEDED DATA: 
+        modelBuilder.Entity<AcademicProgram>().HasData(
+            new AcademicProgram
+            {
+                Id = 1,
+                Name = "Bachelor of Science in Information Technology",
+                Acronym = "BSIT"
+            },
+            new AcademicProgram
+            {
+                Id = 2,
+                Name = "Bachelor of Science in Computer Engineering",
+                Acronym = "BSCpE"
+            }
+            );    
         modelBuilder.Entity<Author>().HasData(
                         new Author
                         {
@@ -32,7 +48,7 @@ public class ARCHSYSContext : DbContext
                              LastName = "Shadya",
                              MiddleInitial = "Van",
                              DocumentId = 1,
-                             AcademicProgram = "BSIT"
+                             AcademicProgramId = 1
                         },
                         new Author
                         {
@@ -40,7 +56,8 @@ public class ARCHSYSContext : DbContext
                             FirstName = "Katharina",
                             LastName = "Malini",
                             MiddleInitial = " Mata",
-                            DocumentId = 1
+                            DocumentId = 1,
+                            AcademicProgramId = 1
                         },
                         new Author
                         {
@@ -49,7 +66,7 @@ public class ARCHSYSContext : DbContext
                             LastName = "Malini",
                             MiddleInitial = " M",
                             DocumentId = 1,
-                            AcademicProgram = "BSIT"
+                            AcademicProgramId = 1
                         },
                          new Author
                          {
@@ -58,7 +75,7 @@ public class ARCHSYSContext : DbContext
                              LastName = "Mihaela",
                              MiddleInitial = "S",
                              DocumentId = 3,
-                             AcademicProgram = "BSIT"
+                             AcademicProgramId = 1
                          },
                         new Author
                         {
@@ -67,7 +84,7 @@ public class ARCHSYSContext : DbContext
                             LastName = "Dejana ",
                             MiddleInitial = "S",
                             DocumentId = 3,
-                            AcademicProgram = "BSIT"
+                            AcademicProgramId = 1
                         },
                         new Author
                         {
@@ -76,7 +93,7 @@ public class ARCHSYSContext : DbContext
                             LastName = " Anželika",
                             MiddleInitial = "C",
                             DocumentId = 3,
-                            AcademicProgram = "BSIT"
+                            AcademicProgramId = 1
                         },
                          new Author
                          {
@@ -85,7 +102,7 @@ public class ARCHSYSContext : DbContext
                              LastName = "Mihaela",
                              MiddleInitial = "S",
                              DocumentId = 4,
-                             AcademicProgram = "BSIT"
+                             AcademicProgramId = 1
                          },
                         new Author
                         {
@@ -94,7 +111,7 @@ public class ARCHSYSContext : DbContext
                             LastName = "Dejana ",
                             MiddleInitial = "S",
                             DocumentId = 4,
-                            AcademicProgram = "BSIT"
+                            AcademicProgramId = 1
                         },
                         new Author
                         {
@@ -103,7 +120,7 @@ public class ARCHSYSContext : DbContext
                             LastName = " Anželika",
                             MiddleInitial = "C",
                             DocumentId = 4,
-                            AcademicProgram = "BSIT"
+                            AcademicProgramId = 1
                         },
                         new Author
                         {
@@ -112,7 +129,7 @@ public class ARCHSYSContext : DbContext
                             LastName = "Mihaela",
                             MiddleInitial = "S",
                             DocumentId = 5,
-                            AcademicProgram = "BSIT"
+                            AcademicProgramId = 1
                         },
                         new Author
                         {
@@ -121,7 +138,7 @@ public class ARCHSYSContext : DbContext
                             LastName = "Dejana ",
                             MiddleInitial = "S",
                             DocumentId = 5,
-                            AcademicProgram = "BSIT"
+                            AcademicProgramId = 1
                         },
                         new Author
                         {
@@ -130,7 +147,7 @@ public class ARCHSYSContext : DbContext
                             LastName = " Anželika",
                             MiddleInitial = "C",
                             DocumentId = 5,
-                            AcademicProgram = "BSIT"
+                            AcademicProgramId = 1
                         },
                          new Author
                          {
@@ -139,7 +156,7 @@ public class ARCHSYSContext : DbContext
                              LastName = "Shadya",
                              MiddleInitial = "Van",
                              DocumentId = 2,
-                             AcademicProgram = "BSIT"
+                             AcademicProgramId = 1
                          },
                         new Author
                         {
@@ -148,7 +165,7 @@ public class ARCHSYSContext : DbContext
                             LastName = "Malini",
                             MiddleInitial = " Mata",
                             DocumentId = 2,
-                            AcademicProgram = "BSIT"
+                            AcademicProgramId = 1
                         },
                         new Author
                         {
@@ -157,7 +174,7 @@ public class ARCHSYSContext : DbContext
                             LastName = "Malini",
                             MiddleInitial = " M",
                             DocumentId = 2,
-                            AcademicProgram = "BSIT"
+                            AcademicProgramId = 1
                         }
                         );
         modelBuilder.Entity<Document>().HasData(
@@ -169,7 +186,7 @@ public class ARCHSYSContext : DbContext
                     Abstract = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." +
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
                      DatePublished = new DateTime(2022, 03, 25),
-                    AcademicProgram = "Bachelor of Science in Information Technology (BSIT)",
+                    AcademicProgramId = 1,
                     IsActive = true
 
                 },
@@ -181,7 +198,7 @@ public class ARCHSYSContext : DbContext
                     Abstract = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." +
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
                     DatePublished = new DateTime(1999, 03, 25),
-                    AcademicProgram = "Bachelor of Science in Information Technology (BSIT)",
+                    AcademicProgramId = 1,
                     IsActive = false
 
                 },
@@ -193,7 +210,7 @@ public class ARCHSYSContext : DbContext
                     Abstract = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." +
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
                     DatePublished = new DateTime(2022, 03, 25),
-                    AcademicProgram = "Bachelor of Science in Information Technology (BSIT)",
+                    AcademicProgramId = 1,
                     IsActive = true
                 },
                  new Document
@@ -204,8 +221,8 @@ public class ARCHSYSContext : DbContext
                      Abstract = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. " +
                     "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
                      DatePublished = new DateTime(2012, 03, 25),
-                     AcademicProgram = "Bachelor of Science in Information Technology (BSIT)",
-                      IsActive = false
+                     AcademicProgramId = 1,
+                     IsActive = false
                  },
                  new Document 
                  {
@@ -214,8 +231,8 @@ public class ARCHSYSContext : DbContext
                      Title = "Kadet Progress Monitoring and Coach Task Designation System for a\r\nCareer Development Organization with Collaborative Technology",
                      Abstract = "The developed system is purposely done by the developers for their\r\nclient Kadakareer.A non - profit organization that has the goal to bring the\r\nbridge to the career gap of the local youth residing in the rural areas of the\r\nPhilippines.The task designation and monitoring system developed is linked\r\nto the existing web application of KadaKareer which is the Coach Connector.\r\nIn accordance with the objectives, the developers met the following\r\nobjectives: develop the system that matches the need of the target users and\r\nevaluate the system in terms of functional suitability and usability.",
                      DatePublished = new DateTime(2022, 03, 26),
-                     AcademicProgram = "Bachelor of Science in Information Technology (BSIT)",
-                      IsActive = true
+                     AcademicProgramId = 1,
+                     IsActive = true
 
                  });
     }

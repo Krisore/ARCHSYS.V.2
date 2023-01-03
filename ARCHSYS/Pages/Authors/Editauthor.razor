@@ -1,18 +1,24 @@
 ﻿@page "/editauthor/{authorId:int}"
 @layout ArchivistLayout
 @inject IViewAuthorById ViewAuthorById
-<h3> Dito i Edit si author </h3>
+@inject IViewAcademicProgramById ViewAcademicProgramById
 <MudForm>
 </MudForm>
 @author.FirstName
 @author.LastName
-@author.AcademicProgram
+@academicProgram.Name
+
 @code {
     [Parameter]
     public int authorId { get; set; }
     public Author author { get; set; } = new Author();
+    public AcademicProgram academicProgram { get; set; } = new();
     protected async override Task OnParametersSetAsync()
     {
         this.author = await ViewAuthorById.ExecuteAsync(this.authorId);
+        if(author != null)
+        {
+            this.academicProgram = await ViewAcademicProgramById.ExecuteAsync(author.AcademicProgramId);
+        }
     }
 }

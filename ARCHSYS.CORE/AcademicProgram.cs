@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ARCHSYS.CORE;
+namespace ARCHSYS.CORE; 
 
-public class Advisor
+public class AcademicProgram
 {
+    public int Id { get; set; }
     public string? Name { get; set; }
-    public AcademicProgram Program { get; set; } = new();
+    public string? Acronym { get; set; }
 
 }

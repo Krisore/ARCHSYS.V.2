@@ -16,7 +16,7 @@
                              Size="Size.Small"
                              ToggledSize="Size.Small"/>
     </MudAppBar>
-    <MudDrawer PreserveOpenState="true" @bind-Open="@IsDrawerOpen" ClipMode="DrawerClipMode.Always" Elevation="1" Variant="@DrawerVariant.Mini" OpenMiniOnHover="true">
+    <MudDrawer PreserveOpenState="true" @bind-Open="@IsDrawerOpen" ClipMode="DrawerClipMode.Always" Elevation="1">
         <div class="my-2 mx-4">
             <ArchivistNavMenu />
         </div>
@@ -32,7 +32,7 @@
 </MudLayout>
 
 @code {
-    public bool IsDrawerOpen { get; set; }
+    public bool IsDrawerOpen { get; set; } = true;
     public bool IsDarkMode { get; set; }
     MudTheme MyCustomTheme = new MudTheme()
         {
