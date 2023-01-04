@@ -1,5 +1,6 @@
 ﻿@page "/upload"
 @inject IAddDocumentService AddDocumentService
+@inject ISnackbar Snackbar
 @inject NavigationManager NavigationManger
 <EditForm Model="_document" OnValidSubmit="SaveDocument">
 <MudDialog>
@@ -9,9 +10,10 @@
         <MudTextField Label="Title" HelperText="Max. 8 characters"
                       @bind-Value="_document.Title" For="@(() => _document.Title)" />
         <MudTextField Label="Short Discription" Class="mt-3"
-                      @bind-Value="_document.ShortDiscription" For="@(() => _document.ShortDiscription)" />
-
-        <MudDatePicker @bind-Date="_document.DatePublished" For="@(() => _document.DatePublished)"></MudDatePicker>
+                      @bind-Value="_document.ShortDiscription" For="@(() => _document.ShortDiscription)"/>
+        <MudTextField Label="Abstract" Class="mt-3" @bind-Value="_document.Abstract"/>
+        <MudDatePicker @bind-Date="_document.DatePublished" For="@(() => _document.DatePublished)"/>
+        <InputFile Accept="application/pdf" OnChange="@OnInputFileChange"/>
     </DialogContent>
     <DialogActions>
         <MudButton DisableElevation="true"
@@ -37,9 +39,21 @@
     {
         await AddDocumentService.ExecuteAsync(_document);
         NavigationManger.NavigateTo("/documents");
+        Snackbar.Add(" Uploaded Successfully", Severity.Success);
     }
     private void Cancel()
     {
         NavigationManger.NavigateTo("/documents");
+    }
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        using (var streamReader = new StreamReader(file.OpenReadStream()))
+        {
+            var fileContent = streamReader.ReadToEnd();
+            _document.File = fileContent;
+        }
+
     }
 }

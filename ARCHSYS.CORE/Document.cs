@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlazorInputFile;
 
 namespace ARCHSYS.CORE;
 
@@ -21,7 +22,9 @@ public class Document
     public List<Author> Authors { get; set; } = new List<Author>();
 
     public List<Topic> Topics { get; set; } = new List<Topic>();
+    public string? File { get; set; }
     public int AcademicProgramId { get; set; }
     public bool IsActive { get; set; }
+    
 
 }

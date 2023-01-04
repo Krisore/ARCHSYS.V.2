@@ -2,7 +2,8 @@
 @inject IViewDocumentById ViewDocumentById
 @inject NavigationManager NavigationManager
 @inject IEditDocumentService EditDocumentService
-<h3>EditDocument</h3>
+@inject ISnackbar SnackBar
+@layout ArchivistLayout
 <EditForm Model="_document" OnValidSubmit="SaveDocument">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -15,12 +16,14 @@
             <MudDatePicker @bind-Date="_document.DatePublished" For="@(() => _document.DatePublished)" />
         </MudCardContent>
         <MudCardActions>
-            <MudButton DisableElevation="true"
+            <MudButton Size="Size.Small"
+                       DisableElevation="true"
                        ButtonType="ButtonType.Submit"
                        Variant="Variant.Filled"
                        Color="Color.Primary"
-                       Class="mx-2">Publish</MudButton>
-            <MudButton DisableElevation="true"
+                       Class="mx-2">Update </MudButton>
+            <MudButton Size="Size.Small"
+                       DisableElevation="true"
                        Variant="Variant.Outlined"
                        Color="Color.Primary"
                        Class="mx-2"
@@ -41,6 +44,7 @@
     {
         await EditDocumentService.ExecuteAsync(this._document);
         NavigationManager.NavigateTo("/documents");
+        SnackBar.Add("Updated Successfully", Severity.Info);
     }
     private void Cancel()
     {
