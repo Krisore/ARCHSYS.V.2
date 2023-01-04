@@ -1,10 +1,14 @@
 ﻿@inherits LayoutComponentBase
+@inject IDialogService DialogService
 <MudThemeProvider Theme="MyCustomTheme" @bind-IsDarkMode="IsDarkMode" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 <MudLayout>
     <MudAppBar Dense="true">
         <MudSpacer/>
+        <MudButton Size="Size.Small" OnClick="@((e) => BeginUpload(UploadDocumentDialog))" StartIcon="@Icons.Material.Filled.Add" Class="rounded-0 mx-2" Variant="Variant.Outlined" Disabled="false" DisableElevation="true">
+            UPLOAD
+        </MudButton>
         <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.MoreVert" />
         <MudToggleIconButton @bind-Toggled="@IsDarkMode"
                              Icon="@Icons.Sharp.DarkMode"
@@ -34,8 +38,17 @@
 @code {
     public bool IsDrawerOpen { get; set; } = true;
     public bool IsDarkMode { get; set; }
+    private DialogOptions UploadDocumentDialog = new DialogOptions()
+    {
+        Position = DialogPosition.Center,
+        MaxWidth = MaxWidth.ExtraExtraLarge,
+        CloseButton = true,
+        NoHeader = false,
+        DisableBackdropClick = false,
+    };
+
     MudTheme MyCustomTheme = new MudTheme()
-        {
+    {
             Palette = new Palette()
             {
                 Primary = Colors.Red.Darken4,
@@ -60,5 +73,7 @@
                     FontFamily = new[] { "Poppins", "Helvetica", "Arial", "sans-serif" }
                 }
             }
-        };
+
+    };
+    private void BeginUpload(DialogOptions options) => DialogService.Show<UploadDocument>("Upload Document 🚀", options);
 }

@@ -9,10 +9,10 @@
         <MudToggleIconButton Size="Size.Small" @bind-Toggled="@IsDrawerOpen" Color="Color.Default" Icon="@Icons.Material.Filled.Menu" Edge="Edge.Start"
         ToggledIcon="@Icons.Material.Outlined.Close" ToggledSize="Size.Small"/>
             <MudSpacer/>
-        <MudButton Size="Size.Small" StartIcon="@Icons.Material.Filled.Add" Class="rounded-0 mx-2" Href="/upload" Variant="Variant.Outlined" Disabled="false" DisableElevation="true">
+        <MudButton Size="Size.Small" Href="" StartIcon="@Icons.Material.Filled.Add" Class="rounded-0 mx-2" Variant="Variant.Outlined" Disabled="false" DisableElevation="true">
             UPLOAD
         </MudButton>
-        <MudButton OnClick="@((e) => BeginLogin(dialog))" Size="Size.Small" Class="rounded-0" Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true">
+        <MudButton OnClick="@((e) => BeginLogin(LogInDialog))" Size="Size.Small" Class="rounded-0" Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true">
             SIGN IN
         </MudButton>
         <MudIconButton Size="Size.Small" Icon="@Icons.Material.Filled.MoreVert" />
@@ -54,13 +54,16 @@
 @code {
     public bool IsDrawerOpen { get; set; }
     public bool IsDarkMode { get; set; }
-    private DialogOptions dialog = new DialogOptions()
+
+    private DialogOptions LogInDialog = new DialogOptions()
     {
-            Position = DialogPosition.TopCenter,
-            CloseButton = true,
-            NoHeader = false,
-            DisableBackdropClick = false,
+        Position = DialogPosition.TopCenter,
+        CloseButton = true,
+        NoHeader = false,
+        DisableBackdropClick = false,
     };
+
+    private void BeginUpload(DialogOptions options) => DialogService.Show<UploadDocument>("Upload Document 🚀", options);
     private void BeginLogin(DialogOptions options) => DialogService.Show<LoginMenu>("", options);
     MudTheme MyCustomTheme = new MudTheme()
         {

@@ -22,10 +22,17 @@ public class ARCHSYSContext : DbContext
     public DbSet<Document> Documents { get; set; }
     public DbSet<Author> Authors { get; set; }
     public DbSet<AcademicProgram> AcademicPrograms { get; set; }
-
+    public DbSet<Topic> Topics { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder) 
     {
-        //!!IMPORTANT ALL SEEDED DATA: 
+        //!!IMPORTANT ALL SEEDED DATA:
+        modelBuilder.Entity<Topic>().HasData(
+            new Topic
+            {
+                Id = 1,
+                TopicName = "Technology"
+            }
+        );
         modelBuilder.Entity<AcademicProgram>().HasData(
             new AcademicProgram
             {

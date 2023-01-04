@@ -49,7 +49,7 @@ public class DocumentRepository : IDocumentRepository
         {
             return database.Documents.Where(d => d.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                                 d.ShortDiscription.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                                d.DatePublished.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
+                                d.DatePublished.ToString()!.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) || 
                                 d.Authors.Any(a => a.FirstName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)|| 
                                 a.LastName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)|| 
                                 a.LastName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)));
@@ -58,17 +58,15 @@ public class DocumentRepository : IDocumentRepository
         
     }
 
-    public Task UpdateDocementaryAsync(Document document)
+    public Task UpdateDocumentaryAsync(Document document)
     {
         if (database.Documents.Any(d => d.Id == document.Id && d.Title.Equals(document.Title, StringComparison.OrdinalIgnoreCase))) return Task.CompletedTask;
         var currentDocument = database.Documents.FirstOrDefault(d => d.Id == document.Id);
-        if (currentDocument != null)
-        {
-            currentDocument.Id = document.Id;
-            currentDocument.Title = document.Title;
-            currentDocument.ShortDiscription = document.ShortDiscription;
-            currentDocument.DatePublished = document.DatePublished;
-        }
+        if (currentDocument == null) return Task.CompletedTask;
+        currentDocument.Id = document.Id;
+        currentDocument.Title = document.Title;
+        currentDocument.ShortDiscription = document.ShortDiscription;
+        currentDocument.DatePublished = document.DatePublished;
         return Task.CompletedTask;
 
     }

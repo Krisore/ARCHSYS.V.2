@@ -1,5 +1,5 @@
 ﻿@layout ArchivistLayout
-<MudGrid Spacing="7" Justify="Justify.Center">
+<MudGrid Spacing="7" Justify="Justify.SpaceEvenly">
     <MudItem>
         <MudChart ChartType="ChartType.Donut" Width="200px" Height="300px" InputData="@data" InputLabels="@labels" LegendPosition="Position.Bottom">
             <CustomGraphics>
@@ -23,7 +23,7 @@
     </MudItem>
 </MudGrid>
 @code{
-    public double[] data = { 25, 77, 28, 5 };
+    public double[] data = { 25, 77, 28, 5 }; 
         public string[] labels = { "BSCpE", "BSIT", "DCIT", "DCE" };
 
         public List<ChartSeries> Series = new List<ChartSeries>()

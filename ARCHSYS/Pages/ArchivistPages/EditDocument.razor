@@ -3,16 +3,16 @@
 @inject NavigationManager NavigationManager
 @inject IEditDocumentService EditDocumentService
 <h3>EditDocument</h3>
-<EditForm Model="Document" OnValidSubmit="SaveDocument">
+<EditForm Model="_document" OnValidSubmit="SaveDocument">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <MudCard>
         <MudCardContent>
             <MudTextField Label="Title" HelperText="Max. 8 characters"
-                          @bind-Value="Document.Title" For="@(() => Document.Title)" />
+                          @bind-Value="_document.Title" For="@(() => _document.Title)" />
             <MudTextField Label="Short Discription" Class="mt-3"
-                          @bind-Value="Document.ShortDiscription" For="@(() => Document.ShortDiscription)" />
-            <MudDatePicker @bind-Date="Document.DatePublished" For="@(() => Document.DatePublished)" />
+                          @bind-Value="_document.ShortDiscription" For="@(() => _document.ShortDiscription)" />
+            <MudDatePicker @bind-Date="_document.DatePublished" For="@(() => _document.DatePublished)" />
         </MudCardContent>
         <MudCardActions>
             <MudButton DisableElevation="true"
@@ -30,15 +30,16 @@
 </EditForm>
 @code {
     [Parameter]
-    public int documentId { get; set; }
-    private Document Document = new Document();
-    protected async override Task OnParametersSetAsync()
+    public int DocumentId { get; set; }
+    private Document _document = new Document();
+    protected override async Task OnParametersSetAsync()
     {
-        this.Document = await ViewDocumentById.ExecuteAsync(this.documentId);
+        this._document = await ViewDocumentById.ExecuteAsync(this.DocumentId);
     }
-    protected async Task SaveDocument()
+
+    private async Task SaveDocument()
     {
-        await EditDocumentService.ExecuteAsync(this.Document);
+        await EditDocumentService.ExecuteAsync(this._document);
         NavigationManager.NavigateTo("/documents");
     }
     private void Cancel()

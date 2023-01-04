@@ -21,6 +21,6 @@ public class EditDocumentService : IEditDocumentService
     }
     public async Task ExecuteAsync(Document document)
     {
-        await this.documentRepository.UpdateDocementaryAsync(document);
+        await this.documentRepository.UpdateDocumentaryAsync(document);
     }
 }
